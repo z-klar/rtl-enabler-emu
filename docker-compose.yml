@@ -1,0 +1,15 @@
+version: '3'
+
+networks:
+  backend:
+
+services:
+
+  rtl-enabler-emu:
+    image: "rtl-enabler-alp:latest"
+    container_name: "rtl-enabler-alp"
+    ports:
+      - "9999:9999"
+    networks:
+      - backend
+

@@ -84,3 +84,39 @@ function update_timer() {
 function ask_data() {
     update_view();
 }
+
+function abt_pressed() {
+    var port = 0;
+    console.log(" ABTPressed .... ");
+    var ePort = document.getElementById("abt_port");
+    port = element.value;
+    var element = document.getElementById("btn_abt");
+    if(element.className.indexOf("danger") != -1) {  // was stopped
+        element.className="btn btn-success btn-block";
+        switch_video(1, 1, port);
+    }
+    else {   // was running
+        switch_video(1, 0, port);
+        element.className="btn btn-danger btn-block";
+    }
+}
+
+function fpk_pressed() {
+
+}
+
+function hud_pressed() {
+
+}
+
+/*--------------------------------------------------------
+  stream_type: 1=ABT, 2=FPK, 3=HUD
+  new_state:   0=Switch OFF, 1=Switch ON
+---------------------------------------------------------*/
+function switch_video(stream_type, new_state, port) {
+
+    console.log("SWITCH_VIDEO: Stream=" + stream_type + ",  NewState=" + new_state + ",  Port=" + port);
+
+
+}
+

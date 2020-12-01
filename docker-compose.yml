@@ -6,8 +6,8 @@ networks:
 services:
 
   rtl-enabler-emu:
-    image: "rtl-enabler-alp:latest"
-    container_name: "rtl-enabler-alp"
+    image: "rtl-enabler-emu:latest"
+    container_name: "rtl-enabler-emu"
     ports:
       - "9999:9999"
     networks:

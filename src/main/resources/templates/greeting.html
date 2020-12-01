@@ -16,10 +16,12 @@
 </head>
 
 <body>
+<!--
 <div class="jumbotron">
   <h2>RTL Enabler Emulator</h2>
   <p>Device emulates enabler itself + Quido relays...</p>
 </div>
+-->
 
   <!--
   <div class="row">
@@ -29,37 +31,51 @@
 -->
 
 <div class="container-fluid">
-  <div class="row">
+  <div class="row mt-3">
+    <div class="col-sm-2 text-center"><h3 class="font-weight-bold"> Quido Relays </h3></div>
+    <div class="col-sm-2 text-center"><h3 class="font-weight-bold"> Video Streams </h3></div>
+  </div>
+
+  <div class="row mt-3">
     <div class="col-sm-1 text-center"><button id="btn_relay1" type="button" th:class="${bs_relay01}" onclick="relay_pressed(0)">Relay 01</button></div>
     <div class="col-sm-1 text-center"><button id="btn_relay9" type="button" th:class="${bs_relay09}" onclick="relay_pressed(8)">Relay 09</button></div>
+    <div class="col-sm-1"><h4> Port: </h4></div>
+    <div class="col-sm-1"> <input type="text" class="form-control" id="abt_port"> </div>
   </div>
   <div class="row mt-1">
     <div class="col-sm-1 text-center"><button id="btn_relay2" type="button" th:class="${bs_relay02}" onclick="relay_pressed(1)"> Relay 02 </button></div>
     <div class="col-sm-1 text-center"><button id="btn_relay10" type="button" th:class="${bs_relay10}" onclick="relay_pressed(9)"> Relay 10 </button></div>
+    <div class="col-sm-2 text-center"><button id="btn_abt" type="button" class="btn btn-danger btn-block" onclick="abt_pressed()">ABT Stream</button></div>
   </div>
   <div class="row mt-1">
     <div class="col-sm-1 text-center"><button id="btn_relay3" type="button" th:class="${bs_relay03}" onclick="relay_pressed(2)">Relay 03</button></div>
     <div class="col-sm-1 text-center"><button id="btn_relay11" type="button" th:class="${bs_relay11}" onclick="relay_pressed(10)">Relay 11</button></div>
   </div>
-  <div class="row mt-1">
+  <div class="row mt-3">
     <div class="col-sm-1 text-center"><button id="btn_relay4" type="button" th:class="${bs_relay04}" onclick="relay_pressed(3)"> Relay 04 </button></div>
     <div class="col-sm-1 text-center"><button id="btn_relay12" type="button" th:class="${bs_relay12}" onclick="relay_pressed(11)"> Relay 12 </button></div>
+    <div class="col-sm-1"><h4> Port: </h4></div>
+    <div class="col-sm-1"> <input type="text" class="form-control" id="fpk_port"> </div>
   </div>
   <div class="row mt-1">
     <div class="col-sm-1 text-center"><button id="btn_relay5" type="button" th:class="${bs_relay05}" onclick="relay_pressed(4)">Relay 05</button></div>
     <div class="col-sm-1 text-center"><button id="btn_relay13" type="button" th:class="${bs_relay13}" onclick="relay_pressed(12)">Relay 13</button></div>
+    <div class="col-sm-2 text-center"><button id="btn_fpk" type="button" class="btn btn-danger btn-block" onclick="fpk_pressed()">FPK Stream</button></div>
   </div>
   <div class="row mt-1">
     <div class="col-sm-1 text-center"><button id="btn_relay6" type="button" th:class="${bs_relay06}" onclick="relay_pressed(5)"> Relay 06 </button></div>
     <div class="col-sm-1 text-center"><button id="btn_relay14" type="button" th:class="${bs_relay14}" onclick="relay_pressed(13)"> Relay 14 </button></div>
   </div>
-  <div class="row mt-1">
+  <div class="row mt-3">
     <div class="col-sm-1 text-center"><button id="btn_relay7" type="button" th:class="${bs_relay07}" onclick="relay_pressed(6)">Relay 07</button></div>
     <div class="col-sm-1 text-center"><button id="btn_relay15" type="button" th:class="${bs_relay15}" onclick="relay_pressed(14)">Relay 15</button></div>
+    <div class="col-sm-1"><h4> Port: </h4></div>
+    <div class="col-sm-1"> <input type="text" class="form-control" id="hud_port"> </div>
   </div>
   <div class="row mt-1">
     <div class="col-sm-1 text-center"><button id="btn_relay8" type="button" th:class="${bs_relay08}" onclick="relay_pressed(7)"> Relay 08 </button></div>
     <div class="col-sm-1 text-center"><button id="btn_relay16" type="button" th:class="${bs_relay16}" onclick="relay_pressed(15)"> Relay 16 </button></div>
+    <div class="col-sm-2 text-center"><button id="btn_hud" type="button" class="btn btn-danger btn-block" onclick="hud_pressed()">HUD Stream</button></div>
   </div>
 
   <div class="row">

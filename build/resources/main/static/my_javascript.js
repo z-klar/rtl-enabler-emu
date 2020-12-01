@@ -89,7 +89,7 @@ function abt_pressed() {
     var port = 0;
     console.log(" ABTPressed .... ");
     var ePort = document.getElementById("abt_port");
-    port = element.value;
+    port = ePort.value;
     var element = document.getElementById("btn_abt");
     if(element.className.indexOf("danger") != -1) {  // was stopped
         element.className="btn btn-success btn-block";
@@ -102,11 +102,35 @@ function abt_pressed() {
 }
 
 function fpk_pressed() {
-
+    var port = 0;
+    console.log(" FPKPressed .... ");
+    var ePort = document.getElementById("fpk_port");
+    port = ePort.value;
+    var element = document.getElementById("btn_fpk");
+    if(element.className.indexOf("danger") != -1) {  // was stopped
+        element.className="btn btn-success btn-block";
+        switch_video(2, 1, port);
+    }
+    else {   // was running
+        switch_video(2, 0, port);
+        element.className="btn btn-danger btn-block";
+    }
 }
 
 function hud_pressed() {
-
+    var port = 0;
+    console.log(" HUDPressed .... ");
+    var ePort = document.getElementById("hud_port");
+    port = ePort.value;
+    var element = document.getElementById("btn_hud");
+    if(element.className.indexOf("danger") != -1) {  // was stopped
+        element.className="btn btn-success btn-block";
+        switch_video(3, 1, port);
+    }
+    else {   // was running
+        switch_video(3, 0, port);
+        element.className="btn btn-danger btn-block";
+    }
 }
 
 /*--------------------------------------------------------
@@ -117,6 +141,20 @@ function switch_video(stream_type, new_state, port) {
 
     console.log("SWITCH_VIDEO: Stream=" + stream_type + ",  NewState=" + new_state + ",  Port=" + port);
 
+    var xhttp = new XMLHttpRequest();
+    var url2 = document.baseURI;   // http://localhost:9999/emulator
+    var query = "?stream=" + stream_type + "&state=" + new_state + "&port=" + port;
+    url2 += query;
+    console.log('URL2: ' + url2);
+    xhttp.onreadystatechange = function() {
+         if (this.readyState == 4 && this.status == 200) {
+             console.log("Resp: " + this.responseText);
+             update_view();
+         }
+    };
+    xhttp.open("GET", url2, true);
+    xhttp.setRequestHeader("Content-type", "application/xml");
+    xhttp.send();
 
 }
 

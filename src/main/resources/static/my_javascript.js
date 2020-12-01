@@ -87,16 +87,19 @@ function ask_data() {
 
 function abt_pressed() {
     var port = 0;
+    var ires = 111;
     console.log(" ABTPressed .... ");
     var ePort = document.getElementById("abt_port");
     port = ePort.value;
     var element = document.getElementById("btn_abt");
     if(element.className.indexOf("danger") != -1) {  // was stopped
+        ires = switch_video(1, 1, port);
+        console.log("abt_pressed: IRES=", ires);
         element.className="btn btn-success btn-block";
-        switch_video(1, 1, port);
     }
     else {   // was running
-        switch_video(1, 0, port);
+        ires = switch_video(1, 0, port);
+        console.log("abt_pressed: IRES=", ires);
         element.className="btn btn-danger btn-block";
     }
 }
@@ -141,6 +144,26 @@ function switch_video(stream_type, new_state, port) {
 
     console.log("SWITCH_VIDEO: Stream=" + stream_type + ",  NewState=" + new_state + ",  Port=" + port);
 
+    var xhttp = new XMLHttpRequest();
+    var url2 = document.baseURI;   // http://localhost:9999/emulator
+    var query = "/video?stream=" + stream_type + "&state=" + new_state + "&port=" + port;
+    url2 += query;
+    console.log('URL2: ' + url2);
+    xhttp.onreadystatechange = function() {
+         if (this.readyState == 4) {
+           if(this.status == 200) {
+             console.log("Resp: " + this.responseText);
+             return(0);
+           }
+           else {
+             console.log("Error: " + this.status);
+             return(1);
+           }
+         }
+    };
+    xhttp.open("GET", url2, true);
+    xhttp.setRequestHeader("Content-type", "application/xml");
+    xhttp.send();
 
 }
 

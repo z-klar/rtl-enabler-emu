@@ -141,7 +141,7 @@ public class QuidoController {
             @ApiResponse(code = 500, message = "Internal server error")
     })
     public ResponseEntity<Object> getSystemInfo() {
-        SysInfo si = new SysInfo("1.0.0.0", "2020-12-02 12:00:00");
+        SysInfo si = new SysInfo("1.0.0.1", "2020-12-02 20:00:00");
         String jsonString = "";
         try {
             ObjectMapper mapper = new ObjectMapper();

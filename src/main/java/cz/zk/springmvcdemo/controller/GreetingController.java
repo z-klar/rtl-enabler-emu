@@ -27,6 +27,11 @@ public class GreetingController {
     @Autowired
     private GreetingService greetingService;
 
+    /**
+     *
+     * @param model
+     * @return
+     */
     @GetMapping("/enabler")
     public String greeting(Model model) {
 
@@ -38,7 +43,12 @@ public class GreetingController {
         }
         return "greeting";
     }
-
+    /**
+     *
+     * @param pars
+     * @param model
+     * @return
+     */
     @GetMapping("/enabler/video")
     public ResponseEntity<Object> switchVideo(@RequestParam Map<String, String> pars, Model model) {
         String sStream = pars.get("stream");
@@ -52,72 +62,7 @@ public class GreetingController {
         if((state == 1) && (port == 0)) {
             return new ResponseEntity<>("Invalid Port !", HttpStatus.BAD_REQUEST);
         }
-        String AbtCmd, FpkCmd, HudCmd, AbtSrc, FpkSrc, HudSrc;
-        if(greetingService.isRunningInsideDocker()) {
-            AbtCmd = "/etc/video_abt.sh";
-            AbtSrc = "/etc/film_abt.mp4";
-            FpkCmd = "/etc/video_fpk.sh";
-            FpkSrc = "/etc/film_fpk.mp4";
-            HudCmd = "/etc/video_hud.sh";
-            HudSrc = "/etc/film_hud.mp4";
-        }
-        else {
-            AbtCmd = "./etc/video_abt.sh";
-            AbtSrc = "./etc/film_abt.mp4";
-            FpkCmd = "./etc/video_fpk.sh";
-            FpkSrc = "./etc/film_fpk.mp4";
-            HudCmd = "./etc/video_hud.sh";
-            HudSrc = "./etc/film_hud.mp4";
-        }
-        switch(stream) {
-            case 1:    // ABT
-                if(state == 1) {   // START
-                    try {
-                        log.info("  StartAbt: bash | " + AbtCmd + " | " + sPort + " | " + AbtSrc + " | ");
-                        pbAbt = new ProcessBuilder("/bin/bash", AbtCmd, sPort, AbtSrc);
-                        procAbt = pbAbt.start();
-                        return new ResponseEntity<>("OK: ABT Video streaming started", HttpStatus.OK);
-                    }
-                    catch(Exception ex) {
-                        return new ResponseEntity<>("Unable to start process VIDEO_ABT !", HttpStatus.BAD_REQUEST);
-                    }
-                }
-                else {   //  STOP
-                    greetingService.KillProcess("abt");
-                    return new ResponseEntity<>("OK ABT Video streaming stopped", HttpStatus.OK);
-                }
-            case 2:    // FPK
-                if(state == 1) {   // START
-                    try {
-                        pbAbt = new ProcessBuilder("/bin/bash", FpkCmd, sPort, FpkSrc);
-                        procAbt = pbAbt.start();
-                        return new ResponseEntity<>("OK: FPK Video streaming started", HttpStatus.OK);
-                    }
-                    catch(Exception ex) {
-                        return new ResponseEntity<>("Unable to start process VIDEO_FPK !", HttpStatus.BAD_REQUEST);
-                    }
-                }
-                else {   //  STOP
-                    greetingService.KillProcess("fpk");
-                    return new ResponseEntity<>("OK: FPK Video streaming stopped", HttpStatus.OK);
-                }
-            case 3:    // HUD
-                if(state == 1) {   // START
-                    try {
-                        pbAbt = new ProcessBuilder("/bin/bash", HudCmd, sPort, HudSrc);
-                        procAbt = pbAbt.start();
-                        return new ResponseEntity<>("OK: HuD Video streaming started", HttpStatus.OK);
-                    }
-                    catch(Exception ex) {
-                        return new ResponseEntity<>("Unable to start process VIDEO_HUD !", HttpStatus.BAD_REQUEST);
-                    }
-                }
-                else {   //  STOP
-                    greetingService.KillProcess("hud");
-                    return new ResponseEntity<>("OK: HuD Video streaming stopped", HttpStatus.OK);
-                }
-        }
-        return new ResponseEntity<>("OK", HttpStatus.OK);
+        return(greetingService.ProcessVideoRequest(stream, state, port));
     }
 
     @GetMapping("/test")

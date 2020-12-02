@@ -9,6 +9,10 @@ import org.springframework.stereotype.Component;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 @Component
 public class GreetingService {
@@ -17,6 +21,7 @@ public class GreetingService {
 
     public void KillProcess(String pattern) {
         ProcessBuilder processBuilder = new ProcessBuilder("ps", "-axg" );
+        log.info("Kill process:  getting process list ...");
         File output = new File("proc.log");
         processBuilder.redirectOutput(output);
         try {
@@ -61,5 +66,15 @@ public class GreetingService {
         int ires = Integer.parseInt(spom);
         //log.info("Start=" + start + "    End=" + i + "   SPOM=[" + spom + "]   ->  IRES=" + ires);
         return(ires);
+    }
+
+    public Boolean isRunningInsideDocker() {
+        try (Stream< String > stream =
+                     Files.lines(Paths.get("/proc/1/cgroup"))) {
+            return stream.anyMatch(line -> line.contains("/docker"));
+        }
+        catch (IOException e) {
+            return false;
+        }
     }
 }

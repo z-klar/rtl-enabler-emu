@@ -1,7 +1,9 @@
 package cz.zk.springmvcdemo.controller;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import cz.zk.springmvcdemo.globalData;
+import cz.zk.springmvcdemo.model.SysInfo;
 import cz.zk.springmvcdemo.xmlProcessing;
 import io.swagger.annotations.*;
 import org.slf4j.Logger;
@@ -130,6 +132,25 @@ public class QuidoController {
             return new ResponseEntity<>("Unknown type !", HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(String.format("PARAMS: TYPE=[%s]   ID=[%s]", stype, sid), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/sysinfo", method = RequestMethod.GET , produces = "application/json")
+    @ApiOperation(value = "Provide the system information")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved info"),
+            @ApiResponse(code = 500, message = "Internal server error")
+    })
+    public ResponseEntity<Object> getSystemInfo() {
+        SysInfo si = new SysInfo("1.0.0.0", "2020-12-02 12:00:00");
+        String jsonString = "";
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            jsonString = mapper.writeValueAsString(si);
+            return new ResponseEntity<>(jsonString, HttpStatus.OK);
+        }
+        catch(Exception ex) {
+            return new ResponseEntity<>("Error: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 

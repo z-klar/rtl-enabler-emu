@@ -13,7 +13,7 @@ import java.time.temporal.ChronoUnit;
 @Component
 public class ScheduledTasks {
 
-    private final long restartPeriod = 60;
+    private final long restartPeriod = 120;
 
     @Autowired
     private globalData gd;

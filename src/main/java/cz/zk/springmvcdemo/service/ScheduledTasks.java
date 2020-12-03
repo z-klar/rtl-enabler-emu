@@ -28,12 +28,12 @@ public class ScheduledTasks {
         LocalDateTime ted = LocalDateTime.now();
         long diff;
 
-        log.info("### Timer 10 Seconds .....");
+        log.debug("### Timer 10 Seconds .....");
         if(gd.VideoAbtRunning) {
             diff = gd.LastAbtOn.until(ted, ChronoUnit.SECONDS);
-            log.info("   ABT running " + diff + " seconds ....");
+            log.debug("   ABT running " + diff + " seconds ....");
             if(diff > restartPeriod) {
-                log.info("      restarting .....");
+                log.debug("      restarting .....");
                 greetingService.KillProcess("abt");
                 delay(1000);
                 greetingService.ProcessVideoRequest(1, 1, gd.AbtPort);
@@ -41,9 +41,9 @@ public class ScheduledTasks {
         }
         if(gd.VideoFpkRunning) {
             diff = gd.LastFpkOn.until(ted, ChronoUnit.SECONDS);
-            log.info("   FPK running " + diff + " seconds ....");
+            log.debug("   FPK running " + diff + " seconds ....");
             if(diff > restartPeriod) {
-                log.info("      restarting .....");
+                log.debug("      restarting .....");
                 greetingService.KillProcess("fpk");
                 delay(1000);
                 greetingService.ProcessVideoRequest(2, 1, gd.FpkPort);
@@ -51,9 +51,9 @@ public class ScheduledTasks {
         }
         if(gd.VideoHudRunning) {
             diff = gd.LastHudOn.until(ted, ChronoUnit.SECONDS);
-            log.info("   HUD running " + diff + " seconds ....");
+            log.debug("   HUD running " + diff + " seconds ....");
             if(diff > restartPeriod) {
-                log.info("      restarting .....");
+                log.debug("      restarting .....");
                 greetingService.KillProcess("hud");
                 delay(1000);
                 greetingService.ProcessVideoRequest(3, 1, gd.HudPort);

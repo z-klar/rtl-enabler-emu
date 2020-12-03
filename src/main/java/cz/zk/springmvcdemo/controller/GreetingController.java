@@ -57,7 +57,7 @@ public class GreetingController {
         int stream = Integer.parseInt(sStream);
         int state = Integer.parseInt(sState);
         int port = sPort.length()==0 ? 0 : Integer.parseInt(sPort);
-        log.info("enabler/video: stream=" + stream + ",  state=" + state + ", port="
+        log.debug("enabler/video: stream=" + stream + ",  state=" + state + ", port="
                 + port + "   IN-DOCKER:" + greetingService.isRunningInsideDocker());
         if((state == 1) && (port == 0)) {
             return new ResponseEntity<>("Invalid Port !", HttpStatus.BAD_REQUEST);

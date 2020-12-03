@@ -157,6 +157,7 @@ function switch_video(stream_type, new_state, port) {
            }
            else {
              console.log("Error: " + this.status);
+             console.log(this.responseText);
              return(1);
            }
          }

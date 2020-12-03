@@ -33,7 +33,7 @@ public class GreetingService {
      */
     public void KillProcess(String pattern) {
         ProcessBuilder processBuilder = new ProcessBuilder("ps", "-axg" );
-        log.info("Kill process:  getting process list ...");
+        log.debug("Kill process:  getting process list ...");
         File output = new File("proc.log");
         processBuilder.redirectOutput(output);
         try {
@@ -44,12 +44,12 @@ public class GreetingService {
             BufferedReader vstup = new BufferedReader(new FileReader("proc.log"));
             while((InputLine = vstup.readLine()) != null) {
                 if(InputLine.contains(pattern)) {
-                    log.info(InputLine);
+                    log.debug(InputLine);
                     pid = getPid(InputLine);
                     ProcessBuilder pb = new ProcessBuilder("kill", String.format("%d", pid));
                     Process proc = pb.start();
                     proc.waitFor();
-                    log.info("   - Process[PID=" + pid + "] deleted .....");
+                    log.debug("   - Process[PID=" + pid + "] deleted .....");
                 }
             }
             vstup.close();
@@ -129,7 +129,7 @@ public class GreetingService {
                 if(state == 1) {   // START
                     try {
                         log.debug("  StartAbt: bash | " + AbtCmd + " | " + sPort + " | " + AbtSrc + " | ");
-                        log.info("Start VideoABT ....");
+                        log.debug("Start VideoABT ....");
                         pb = new ProcessBuilder("/bin/bash", AbtCmd, sPort, AbtSrc);
                         pb.start();
                         gd.VideoAbtRunning = true;
@@ -150,7 +150,7 @@ public class GreetingService {
                 gd.FpkPort = port;
                 if(state == 1) {   // START
                     try {
-                        log.info("Start VideoFPK ....");
+                        log.debug("Start VideoFPK ....");
                         pb = new ProcessBuilder("/bin/bash", FpkCmd, sPort, FpkSrc);
                         pb.start();
                         gd.VideoFpkRunning = true;
@@ -171,7 +171,7 @@ public class GreetingService {
                 gd.HudPort = port;
                 if(state == 1) {   // START
                     try {
-                        log.info("Start VideoHUD ....");
+                        log.debug("Start VideoHUD ....");
                         pb = new ProcessBuilder("/bin/bash", HudCmd, sPort, HudSrc);
                         pb.start();
                         gd.VideoHudRunning = true;

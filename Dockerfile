@@ -6,8 +6,8 @@ RUN date >/info/build_date.txt
 
 # Update system and install base dependencies
 #RUN apt-get update && apt-get upgrade -y  && apt-get install curl git wget jq -y
-#RUN apt-get update && apt-get upgrade -y
-RUN apt-get update  -y
+RUN apt-get update && apt-get upgrade -y
+#RUN apt-get update  -y
 
 RUN apt-get install nano -y
 

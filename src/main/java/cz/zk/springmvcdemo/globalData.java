@@ -15,5 +15,6 @@ public class globalData {
     public boolean VideoAbtRunning, VideoFpkRunning, VideoHudRunning;
     public LocalDateTime LastAbtOn, LastFpkOn, LastHudOn;
     public int AbtPort, FpkPort, HudPort;
+    public String JanusIp;
 
 }

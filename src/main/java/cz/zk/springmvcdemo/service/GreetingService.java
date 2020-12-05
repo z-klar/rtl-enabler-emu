@@ -101,7 +101,7 @@ public class GreetingService {
      * @param port
      * @return
      */
-    public ResponseEntity<Object> ProcessVideoRequest(int stream, int state, int port) {
+    public ResponseEntity<Object> ProcessVideoRequest(int stream, int state, int port, String JanusIp) {
         String sPort = String.format("%d", port);
         String AbtCmd, FpkCmd, HudCmd, AbtSrc, FpkSrc, HudSrc;
         ProcessBuilder pb;
@@ -126,11 +126,12 @@ public class GreetingService {
         switch(stream) {
             case 1:    // ABT
                 gd.AbtPort = port;
+                gd.JanusIp = JanusIp;
                 if(state == 1) {   // START
                     try {
-                        log.debug("  StartAbt: bash | " + AbtCmd + " | " + sPort + " | " + AbtSrc + " | ");
+                        log.info("  StartAbt: bash | " + AbtCmd + " | " + sPort + " | " + AbtSrc + " | " + JanusIp);
                         log.debug("Start VideoABT ....");
-                        pb = new ProcessBuilder("/bin/bash", AbtCmd, sPort, AbtSrc);
+                        pb = new ProcessBuilder("/bin/bash", AbtCmd, sPort, AbtSrc, JanusIp);
                         pb.start();
                         gd.VideoAbtRunning = true;
                         gd.LastAbtOn = LocalDateTime.now();
@@ -148,10 +149,11 @@ public class GreetingService {
                 }
             case 2:    // FPK
                 gd.FpkPort = port;
+                gd.JanusIp = JanusIp;
                 if(state == 1) {   // START
                     try {
                         log.debug("Start VideoFPK ....");
-                        pb = new ProcessBuilder("/bin/bash", FpkCmd, sPort, FpkSrc);
+                        pb = new ProcessBuilder("/bin/bash", FpkCmd, sPort, FpkSrc, JanusIp);
                         pb.start();
                         gd.VideoFpkRunning = true;
                         gd.LastFpkOn = LocalDateTime.now();
@@ -168,11 +170,12 @@ public class GreetingService {
                     return new ResponseEntity<>("OK: FPK Video streaming stopped", HttpStatus.OK);
                 }
             case 3:    // HUD
+                gd.JanusIp = JanusIp;
                 gd.HudPort = port;
                 if(state == 1) {   // START
                     try {
                         log.debug("Start VideoHUD ....");
-                        pb = new ProcessBuilder("/bin/bash", HudCmd, sPort, HudSrc);
+                        pb = new ProcessBuilder("/bin/bash", HudCmd, sPort, HudSrc, JanusIp);
                         pb.start();
                         gd.VideoHudRunning = true;
                         gd.LastHudOn = LocalDateTime.now();

@@ -54,15 +54,16 @@ public class GreetingController {
         String sStream = pars.get("stream");
         String sState = pars.get("state");
         String sPort = pars.get("port");
+        String sJanusIp = pars.get("janus_ip");
         int stream = Integer.parseInt(sStream);
         int state = Integer.parseInt(sState);
         int port = sPort.length()==0 ? 0 : Integer.parseInt(sPort);
         log.debug("enabler/video: stream=" + stream + ",  state=" + state + ", port="
-                + port + "   IN-DOCKER:" + greetingService.isRunningInsideDocker());
+                + port + "  JanusIP=" + sJanusIp + "   IN-DOCKER:" + greetingService.isRunningInsideDocker());
         if((state == 1) && (port == 0)) {
             return new ResponseEntity<>("Invalid Port !", HttpStatus.BAD_REQUEST);
         }
-        return(greetingService.ProcessVideoRequest(stream, state, port));
+        return(greetingService.ProcessVideoRequest(stream, state, port, sJanusIp));
     }
 
     @GetMapping("/test")

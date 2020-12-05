@@ -36,7 +36,7 @@ public class ScheduledTasks {
                 log.debug("      restarting .....");
                 greetingService.KillProcess("abt");
                 delay(1000);
-                greetingService.ProcessVideoRequest(1, 1, gd.AbtPort);
+                greetingService.ProcessVideoRequest(1, 1, gd.AbtPort, gd.JanusIp);
             }
         }
         if(gd.VideoFpkRunning) {
@@ -46,7 +46,7 @@ public class ScheduledTasks {
                 log.debug("      restarting .....");
                 greetingService.KillProcess("fpk");
                 delay(1000);
-                greetingService.ProcessVideoRequest(2, 1, gd.FpkPort);
+                greetingService.ProcessVideoRequest(2, 1, gd.FpkPort, gd.JanusIp);
             }
         }
         if(gd.VideoHudRunning) {
@@ -56,7 +56,7 @@ public class ScheduledTasks {
                 log.debug("      restarting .....");
                 greetingService.KillProcess("hud");
                 delay(1000);
-                greetingService.ProcessVideoRequest(3, 1, gd.HudPort);
+                greetingService.ProcessVideoRequest(3, 1, gd.HudPort, gd.JanusIp);
             }
         }
     }

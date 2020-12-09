@@ -8,4 +8,4 @@
 ### History
   - 1.0.0.1: Initial version
   - 1.0.0.2: an option for enterying Janus IP added for mximal flexibility
-
+  - 1.0.0.3: shell scripts for starting FPK and HuD video streams fixed

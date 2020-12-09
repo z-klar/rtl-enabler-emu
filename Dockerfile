@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-MAINTAINER Zdenek Klar <zdeneki.klar@gmail.com>
+MAINTAINER Zdenek Klar <zdenek.klar@gmail.com>
 
 RUN mkdir /info
 RUN date >/info/build_date.txt

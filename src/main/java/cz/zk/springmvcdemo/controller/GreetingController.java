@@ -41,6 +41,8 @@ public class GreetingController {
             String relay = String.format("bs_relay%02d", i+1);
             model.addAttribute(relay, gd.douts[i]==0 ? class0 : class1);
         }
+        model.addAttribute("Systeminfo", "Version:  " + gd.sysInfo.getSystemVersion()
+                                                      + "     Build Date:  " + gd.sysInfo.getBuildDate());
         return "greeting";
     }
     /**

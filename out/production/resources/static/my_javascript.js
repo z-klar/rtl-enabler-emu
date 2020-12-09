@@ -88,17 +88,20 @@ function ask_data() {
 function abt_pressed() {
     var port = 0;
     var ires = 111;
+    var JanusIp = "  ";
     console.log(" ABTPressed .... ");
+    var eJanus = document.getElementById("janus_ip");
+    JanusIp = eJanus.value;
     var ePort = document.getElementById("abt_port");
     port = ePort.value;
     var element = document.getElementById("btn_abt");
     if(element.className.indexOf("danger") != -1) {  // was stopped
-        ires = switch_video(1, 1, port);
+        ires = switch_video(1, 1, port, JanusIp);
         console.log("abt_pressed: IRES=", ires);
         element.className="btn btn-success btn-block";
     }
     else {   // was running
-        ires = switch_video(1, 0, port);
+        ires = switch_video(1, 0, port, JanusIp);
         console.log("abt_pressed: IRES=", ires);
         element.className="btn btn-danger btn-block";
     }
@@ -106,32 +109,38 @@ function abt_pressed() {
 
 function fpk_pressed() {
     var port = 0;
+    var JanusIp = "  ";
     console.log(" FPKPressed .... ");
+    var eJanus = document.getElementById("janus_ip");
+    JanusIp = eJanus.value;
     var ePort = document.getElementById("fpk_port");
     port = ePort.value;
     var element = document.getElementById("btn_fpk");
     if(element.className.indexOf("danger") != -1) {  // was stopped
         element.className="btn btn-success btn-block";
-        switch_video(2, 1, port);
+        switch_video(2, 1, port, JanusIp);
     }
     else {   // was running
-        switch_video(2, 0, port);
+        switch_video(2, 0, port, JanusIp);
         element.className="btn btn-danger btn-block";
     }
 }
 
 function hud_pressed() {
     var port = 0;
+    var JanusIp = "  ";
     console.log(" HUDPressed .... ");
+    var eJanus = document.getElementById("janus_ip");
+    JanusIp = eJanus.value;
     var ePort = document.getElementById("hud_port");
     port = ePort.value;
     var element = document.getElementById("btn_hud");
     if(element.className.indexOf("danger") != -1) {  // was stopped
         element.className="btn btn-success btn-block";
-        switch_video(3, 1, port);
+        switch_video(3, 1, port, JanusIp);
     }
     else {   // was running
-        switch_video(3, 0, port);
+        switch_video(3, 0, port), JanusIp;
         element.className="btn btn-danger btn-block";
     }
 }
@@ -140,13 +149,13 @@ function hud_pressed() {
   stream_type: 1=ABT, 2=FPK, 3=HUD
   new_state:   0=Switch OFF, 1=Switch ON
 ---------------------------------------------------------*/
-function switch_video(stream_type, new_state, port) {
+function switch_video(stream_type, new_state, port, janus_ip) {
 
     console.log("SWITCH_VIDEO: Stream=" + stream_type + ",  NewState=" + new_state + ",  Port=" + port);
 
     var xhttp = new XMLHttpRequest();
     var url2 = document.baseURI;   // http://localhost:9999/emulator
-    var query = "/video?stream=" + stream_type + "&state=" + new_state + "&port=" + port;
+    var query = "/video?stream=" + stream_type + "&state=" + new_state + "&port=" + port + "&janus_ip=" + janus_ip;
     url2 += query;
     console.log('URL2: ' + url2);
     xhttp.onreadystatechange = function() {

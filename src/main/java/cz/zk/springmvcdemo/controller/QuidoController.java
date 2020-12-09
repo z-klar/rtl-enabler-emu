@@ -134,6 +134,10 @@ public class QuidoController {
         return new ResponseEntity<>(String.format("PARAMS: TYPE=[%s]   ID=[%s]", stype, sid), HttpStatus.OK);
     }
 
+    /**
+     *
+     * @return
+     */
     @RequestMapping(value = "/sysinfo", method = RequestMethod.GET , produces = "application/json")
     @ApiOperation(value = "Provide the system information")
     @ApiResponses(value = {
@@ -141,7 +145,7 @@ public class QuidoController {
             @ApiResponse(code = 500, message = "Internal server error")
     })
     public ResponseEntity<Object> getSystemInfo() {
-        SysInfo si = new SysInfo("1.0.0.3", "2020-12-09 09:45:00");
+        SysInfo si = gd.sysInfo;
         String jsonString = "";
         try {
             ObjectMapper mapper = new ObjectMapper();

@@ -23,5 +23,7 @@ COPY $PROPERTIES_PATH /cfg/application.properties
 copy etc/*.* /etc/
 
 EXPOSE 9999
+EXPOSE 7777
+EXPOSE 8888
 
 ENTRYPOINT java -jar /var/app.jar --spring.config.location=/cfg/application.properties

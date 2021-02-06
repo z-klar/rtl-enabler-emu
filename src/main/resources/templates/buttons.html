@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>RTL Enabler Emulator</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- import JavaScript files here -->
+    <script src="buttons_javascript.js"></script>
+</head>
+
+<body onload="start()">
+
+<div class="container-fluid">
+  <div class="row mt-3">
+    <div class="col-sm-2 text-center"><h3 class="font-weight-bold"> ABT Touches </h3></div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-sm-1 text-center"><button id="btn_abt_home" type="button" th:class="${bs_abt_home}">HOME</button></div>
+    <div class="col-sm-1 text-center"><button id="btn_abt_menu" type="button" th:class="${bs_abt_menu}">MENU</button></div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-sm-2 text-center"><button id="btn_abt_power" type="button" th:class="${bs_abt_power}">   POWER   </button></div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-sm-2"> <input type="text" class="form-control" id="abt_buttons_log" th:value="${abt_bt_log}"> </div>
+  </div>
+
+  <div class="row mt-3">
+  </div>
+
+  <div class="row mt-1">
+        <div class="col-xl-2 text-center">
+            <button type="button" class="btn btn-primary btn-block" onclick="window.location.href='enabler'"> QUIDO </button>
+        </div>
+  </div>
+
+
+</div>
+
+<footer class="page-footer font-small blue pt-4 ml-3">
+  <div class="footer-copyright text-left py-3">© 2020 Copyright: Digiteq Automotive
+    <p th:text="${Systeminfo}"></p>
+  </div>
+</footer>
+
+</body>
+</html>

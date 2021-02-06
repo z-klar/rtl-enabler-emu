@@ -13,10 +13,13 @@ public class globalData {
     public int [] dins = new int[2];
     public int [] douts = new int[16];
 
+    public boolean BtnAbtHome, BtnAbtMenu, BnAbtPower;
+    public String BtnAbtTouch;
+
     public boolean VideoAbtRunning, VideoFpkRunning, VideoHudRunning;
     public LocalDateTime LastAbtOn, LastFpkOn, LastHudOn;
     public int AbtPort, FpkPort, HudPort;
     public String JanusIp;
-    public SysInfo sysInfo = new SysInfo("1.0.0.3", "2020-12-09");
+    public SysInfo sysInfo = new SysInfo("1.1.0.0", "2021-02-06");
 
 }

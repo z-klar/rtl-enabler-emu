@@ -45,6 +45,27 @@ public class GreetingController {
                                                       + "     Build Date:  " + gd.sysInfo.getBuildDate());
         return "greeting";
     }
+
+    /**
+     *
+     * @param model
+     * @return
+     */
+    @GetMapping("/buttons")
+    public String buttons(Model model) {
+
+        String class0 = "btn btn-danger btn-block";
+        String class1 = "btn btn-success btn-block";
+        model.addAttribute("bs_abt_home", gd.BtnAbtHome ? class1 : class0);
+        model.addAttribute("bs_abt_menu", gd.BtnAbtMenu ? class1 : class0);
+        model.addAttribute("bs_abt_power", gd.BnAbtPower ? class1 : class0);
+        model.addAttribute("abt_bt_log", gd.BtnAbtTouch);
+
+        model.addAttribute("Systeminfo", "Version:  " + gd.sysInfo.getSystemVersion()
+                + "     Build Date:  " + gd.sysInfo.getBuildDate());
+
+        return "buttons";
+    }
     /**
      *
      * @param pars

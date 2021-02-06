@@ -34,6 +34,7 @@ function relay_pressed(relay_no) {
 }
 
 function update_view() {
+
     var xhttp = new XMLHttpRequest();
     var url2 = document.baseURI;   // http://localhost:9999/emulator
     npos = url2.lastIndexOf("/");

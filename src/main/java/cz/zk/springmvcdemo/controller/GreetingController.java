@@ -48,6 +48,7 @@ public class GreetingController {
         model.addAttribute("bs_abt_menu", gd.BtnAbtMenu ? class1 : class0);
         model.addAttribute("bs_abt_power", gd.BnAbtPower ? class1 : class0);
         model.addAttribute("abt_bt_log", gd.BtnAbtTouch);
+        model.addAttribute("mfl_bt_log", gd.BtnMflTouch);
 
         return "greeting";
     }

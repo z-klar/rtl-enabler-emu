@@ -14,7 +14,8 @@ public class globalData {
     public int [] douts = new int[16];
 
     public boolean BtnAbtHome, BtnAbtMenu, BnAbtPower;
-    public String BtnAbtTouch;
+    public String BtnAbtTouch = "";
+    public String BtnMflTouch = "";
 
     public boolean VideoAbtRunning, VideoFpkRunning, VideoHudRunning;
     public LocalDateTime LastAbtOn, LastFpkOn, LastHudOn;

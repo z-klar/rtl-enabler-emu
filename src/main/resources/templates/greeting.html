@@ -49,12 +49,14 @@
     <div class="col-sm-1 text-center"><button id="btn_relay4" type="button" th:class="${bs_relay04}" onclick="relay_pressed(3)"> Relay 04 </button></div>
     <div class="col-sm-1 text-center"><button id="btn_relay12" type="button" th:class="${bs_relay12}" onclick="relay_pressed(11)"> Relay 12 </button></div>
     <div class="col-sm-2 text-center"><button id="btn_abt" type="button" class="btn btn-danger btn-block" onclick="abt_pressed()">ABT Stream</button></div>
+    <div class="col-sm-2 text-center"><h3 class="font-weight-bold"> MFL Buttons </h3></div>
   </div>
   <div class="row mt-1">
     <div class="col-sm-1 text-center"><button id="btn_relay5" type="button" th:class="${bs_relay05}" onclick="relay_pressed(4)">Relay 05</button></div>
     <div class="col-sm-1 text-center"><button id="btn_relay13" type="button" th:class="${bs_relay13}" onclick="relay_pressed(12)">Relay 13</button></div>
     <div class="col-sm-1"><h4> Port: </h4></div>
     <div class="col-sm-1"> <input type="text" class="form-control" id="fpk_port" value="7004"> </div>
+    <div class="col-sm-2"> <input type="text" class="form-control" id="mfl_buttons_log" th:value="${mfl_bt_log}"> </div>
   </div>
   <div class="row mt-1">
     <div class="col-sm-1 text-center"><button id="btn_relay6" type="button" th:class="${bs_relay06}" onclick="relay_pressed(5)"> Relay 06 </button></div>

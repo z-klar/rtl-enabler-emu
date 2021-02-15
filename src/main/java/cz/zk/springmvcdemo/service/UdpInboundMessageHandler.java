@@ -1,6 +1,7 @@
 package cz.zk.springmvcdemo.service;
 
 import cz.zk.springmvcdemo.globalData;
+import cz.zk.springmvcdemo.tool.tools;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.annotation.MessageEndpoint;
@@ -50,8 +51,22 @@ public class UdpInboundMessageHandler {
 		String logrecord = "MFL Msg: ";
 		for(int i=0; i< msg.length; i++)
 			logrecord += String.format("%02X ", msg[i]);
-		log.info(logrecord);
+		log.debug(logrecord);
 
+		int code = msg[5];
+		String name = tools.getMflButtonDescrByCode(code);
+		String spom = gd.getBtnMflTouch();
+		if(spom.length() == 0) {
+			spom = name + "+";
+		}
+		else {
+			int pos = spom.indexOf("+");
+			spom = spom.substring(pos+1);
+			spom += "+";
+			spom += name;
+		}
+		log.debug("New MFL State: " + spom);
+		gd.BtnMflTouch = spom;
 	}
 	/**
      *

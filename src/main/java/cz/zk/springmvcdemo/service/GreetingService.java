@@ -204,6 +204,7 @@ public class GreetingService {
         buttons.setAbtButtonMenu(gd.BtnAbtMenu);
         buttons.setAbtButtonPower(gd.BnAbtPower);
         buttons.setAbtButtonsMessage1(gd.BtnAbtTouch);
+        buttons.setMflButtonsMessage1(gd.BtnMflTouch);
         return new ResponseEntity<AbtButtonsDTO>(buttons, HttpStatus.OK);
     }
 }

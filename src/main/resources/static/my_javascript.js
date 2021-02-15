@@ -109,6 +109,8 @@ function update_abt_buttons() {
             else element.className="btn btn-danger btn-block";
             element = document.getElementById("abt_buttons_log");
             element.value = obj.abtButtonsMessage1;
+            element = document.getElementById("mfl_buttons_log");
+            element.value = obj.mflButtonsMessage1;
         }
     };
     xhttp.open("GET", url2, true);

@@ -17,10 +17,10 @@ public class UdpInboundMessageHandler {
 	@Autowired
 	globalData gd;
 
-	@ServiceActivator(inputChannel = "inboundChannel")
+	@ServiceActivator(inputChannel = "udpPort7777")
 	public void handleMessage(Message message, @Headers Map<String, Object> headerMap) {
 		byte[] msg = (byte[]) message.getPayload();
-		String logrecord = "Msg: ";
+		String logrecord = "ABT Msg: ";
 		for(int i=0; i< msg.length; i++)
 			logrecord += String.format("%02X ", msg[i]);
 		log.debug(logrecord);
@@ -44,11 +44,20 @@ public class UdpInboundMessageHandler {
 		}
 	}
 
+	@ServiceActivator(inputChannel = "udpPort8888")
+	public void handleMessage8888(Message message, @Headers Map<String, Object> headerMap) {
+		byte[] msg = (byte[]) message.getPayload();
+		String logrecord = "MFL Msg: ";
+		for(int i=0; i< msg.length; i++)
+			logrecord += String.format("%02X ", msg[i]);
+		log.info(logrecord);
+
+	}
 	/**
-	 *
-	 * @param msg
-	 * @return
-	 */
+     *
+     * @param msg
+     * @return
+     */
 	private String getCoords(byte[] msg) {
 		String spom = "";
 		int x1 = 64 * (msg[9] & 0x0f);  // dolni 4 bity = horni bity X

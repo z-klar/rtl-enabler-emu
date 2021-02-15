@@ -1,6 +1,7 @@
 package cz.zk.springmvcdemo.controller;
 
 import cz.zk.springmvcdemo.globalData;
+import cz.zk.springmvcdemo.model.AbtButtonsDTO;
 import cz.zk.springmvcdemo.service.GreetingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,6 +44,11 @@ public class GreetingController {
         }
         model.addAttribute("Systeminfo", "Version:  " + gd.sysInfo.getSystemVersion()
                                                       + "     Build Date:  " + gd.sysInfo.getBuildDate());
+        model.addAttribute("bs_abt_home", gd.BtnAbtHome ? class1 : class0);
+        model.addAttribute("bs_abt_menu", gd.BtnAbtMenu ? class1 : class0);
+        model.addAttribute("bs_abt_power", gd.BnAbtPower ? class1 : class0);
+        model.addAttribute("abt_bt_log", gd.BtnAbtTouch);
+
         return "greeting";
     }
 
@@ -89,6 +95,20 @@ public class GreetingController {
         return(greetingService.ProcessVideoRequest(stream, state, port, sJanusIp));
     }
 
+    /**
+     *
+     * @return
+     */
+    @GetMapping("/enabler/abtbuttons")
+    public ResponseEntity<AbtButtonsDTO> getAbtButtonsState() {
+        return(greetingService.getAbtButtonsState());
+    }
+
+    /**
+     *
+     * @param model
+     * @return
+     */
     @GetMapping("/test")
     public String displayTest(Model model) {
         return "test";

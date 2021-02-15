@@ -3,6 +3,7 @@ package cz.zk.springmvcdemo.service;
 
 import cz.zk.springmvcdemo.controller.GreetingController;
 import cz.zk.springmvcdemo.globalData;
+import cz.zk.springmvcdemo.model.AbtButtonsDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -196,4 +197,13 @@ public class GreetingService {
 
     }
 
+    public ResponseEntity<AbtButtonsDTO> getAbtButtonsState() {
+
+        AbtButtonsDTO buttons = new AbtButtonsDTO();
+        buttons.setAbtButtonHome(gd.BtnAbtHome);
+        buttons.setAbtButtonMenu(gd.BtnAbtMenu);
+        buttons.setAbtButtonPower(gd.BnAbtPower);
+        buttons.setAbtButtonsMessage1(gd.BtnAbtTouch);
+        return new ResponseEntity<AbtButtonsDTO>(buttons, HttpStatus.OK);
+    }
 }

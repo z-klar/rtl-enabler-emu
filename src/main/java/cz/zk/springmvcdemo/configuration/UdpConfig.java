@@ -17,11 +17,19 @@ public class UdpConfig {
         return new DirectChannel();
     }
 
-    @Bean(name = "udpReceivingAdapter")
-    public UnicastReceivingChannelAdapter udpReceivingAdapter() {
-        UnicastReceivingChannelAdapter adapter = new UnicastReceivingChannelAdapter(port);
+    @Bean(name = "udpReceivingAdapter7777")
+    public UnicastReceivingChannelAdapter udpReceivingAdapter7777() {
+        UnicastReceivingChannelAdapter adapter = new UnicastReceivingChannelAdapter(7777);
         adapter.setOutputChannel(inboundChannel());
-        adapter.setOutputChannelName(channel);
+        adapter.setOutputChannelName("udpPort7777");
+        return adapter;
+    }
+
+    @Bean(name = "udpReceivingAdapter8888")
+    public UnicastReceivingChannelAdapter udpReceivingAdapter8888() {
+        UnicastReceivingChannelAdapter adapter = new UnicastReceivingChannelAdapter(8888);
+        adapter.setOutputChannel(inboundChannel());
+        adapter.setOutputChannelName("udpPort8888");
         return adapter;
     }
 

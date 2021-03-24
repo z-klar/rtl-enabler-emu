@@ -21,6 +21,6 @@ public class globalData {
     public LocalDateTime LastAbtOn, LastFpkOn, LastHudOn;
     public int AbtPort, FpkPort, HudPort;
     public String JanusIp;
-    public SysInfo sysInfo = new SysInfo("1.1.1.0", "2021-03-23");
+    public SysInfo sysInfo = new SysInfo("1.2.0.0", "2021-03-24");
 
 }

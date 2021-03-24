@@ -8,8 +8,6 @@ cz/zk/springmvcdemo/xmlProcessing.java
  cz.zk.springmvcdemo.xmlProcessing
 cz/zk/springmvcdemo/tool/tools.java
  cz.zk.springmvcdemo.tool.tools
-cz/zk/springmvcdemo/model/AbtButtonsDTO.java
- cz.zk.springmvcdemo.model.AbtButtonsDTO
 cz/zk/springmvcdemo/model/BtnMessage.java
  cz.zk.springmvcdemo.model.BtnMessage
 cz/zk/springmvcdemo/service/GreetingService.java
@@ -18,6 +16,8 @@ cz/zk/springmvcdemo/controller/QuidoController.java
  cz.zk.springmvcdemo.controller.QuidoController
 cz/zk/springmvcdemo/globalData.java
  cz.zk.springmvcdemo.globalData
+cz/zk/springmvcdemo/model/AbtButtonsDTO.java
+ cz.zk.springmvcdemo.model.AbtButtonsDTO
 cz/zk/springmvcdemo/controller/GreetingController.java
  cz.zk.springmvcdemo.controller.GreetingController
 cz/zk/springmvcdemo/service/ScheduledTasks.java

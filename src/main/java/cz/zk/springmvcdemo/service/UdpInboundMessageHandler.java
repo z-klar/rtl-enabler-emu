@@ -25,6 +25,7 @@ public class UdpInboundMessageHandler {
 		for(int i=0; i< msg.length; i++)
 			logrecord += String.format("%02X ", msg[i]);
 		log.debug(logrecord);
+		gd.AbtMessage = logrecord;
 
 		if(msg[7] == 0x66) {   // HOME
 			log.debug("HOME button " + msg[8]);

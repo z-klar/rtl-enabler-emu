@@ -11,4 +11,5 @@ public class AbtButtonsDTO {
     private boolean AbtButtonPower;
     private String AbtButtonsMessage1;
     private String MflButtonsMessage1;
+    private String AbtMessage;
 }

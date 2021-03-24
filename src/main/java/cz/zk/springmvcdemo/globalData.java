@@ -16,11 +16,12 @@ public class globalData {
     public boolean BtnAbtHome, BtnAbtMenu, BnAbtPower;
     public String BtnAbtTouch = "";
     public String BtnMflTouch = "";
+    public String AbtMessage;
 
     public boolean VideoAbtRunning, VideoFpkRunning, VideoHudRunning;
     public LocalDateTime LastAbtOn, LastFpkOn, LastHudOn;
     public int AbtPort, FpkPort, HudPort;
     public String JanusIp;
-    public SysInfo sysInfo = new SysInfo("1.2.0.0", "2021-03-24");
+    public SysInfo sysInfo = new SysInfo("1.3.0.0", "2021-03-24");
 
 }

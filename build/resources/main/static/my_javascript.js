@@ -111,6 +111,8 @@ function update_abt_buttons() {
             element.value = obj.abtButtonsMessage1;
             element = document.getElementById("mfl_buttons_log");
             element.value = obj.mflButtonsMessage1;
+            element = document.getElementById("abt_log");
+            element.value = obj.abtMessage;
         }
     };
     xhttp.open("GET", url2, true);
